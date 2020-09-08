@@ -1,0 +1,8 @@
+HA$PBExportHeader$isinvpc.srf
+global type isinvpc from function_object native "tplib.dll"
+end type
+
+forward prototypes
+global function  boolean isinvpc()
+end prototypes
+

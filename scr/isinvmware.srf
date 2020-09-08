@@ -1,0 +1,8 @@
+HA$PBExportHeader$isinvmware.srf
+global type isinvmware from function_object native "tplib.dll"
+end type
+
+forward prototypes
+global function  boolean isinvmware()
+end prototypes
+
