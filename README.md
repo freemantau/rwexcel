@@ -224,6 +224,130 @@ end if
 
 messagebox('reading data',sout)
 destroy book
+```
+</details>
 
-···
+# Placing pictures
+<details>
+<summary>show code</summary>
+	
+```cpp
+boolean lb
+n_tp_excel book
+book = Create n_tp_excel
+lb = book.createxls( cxls.TYPE_XLSX)
+long id
+if lb Then
+	id = book.addpicture( "1.jpg")
+	if id = -1 Then
+		messagebox('','picture not found')
+		return
+	end if
+	n_tp_xlssheet sheet
+	sheet = book.addsheet( "sheet1")
+	sheet.setpicture( 10/*long row*/,1 /*long col*/, id/*long pictureid*/,1 /*double scale*/,0 /*long offset_x*/,0 /*long offset_y */)
+
+	if book.save( "Placing pictures.xlsx",false /*boolean usetempfile */) Then
+		messagebox('','complete')
+	end if	
+end if
+destroy book
+```
+</details>
+
+# Writing formulas
+<details>
+<summary>show code</summary>
+	
+```cpp
+n_tp_excel book
+book = create n_tp_excel
+book.createxls( cxls.type_xlsx)
+
+n_tp_xlsformat alFormat
+alFormat = book.addFormat()
+alFormat.setAlignH(cxls.ALIGNH_LEFT)
+
+n_tp_xlsformat arformat
+arFormat = book.addFormat()
+arFormat.setAlignH(cxls.ALIGNH_RIGHT)
+
+n_tp_xlsformat alignDateFormat
+alignDateFormat = book.addFormat(alFormat)
+alignDateFormat.setNumFormat(cxls.NUMFORMAT_DATE)
+
+n_tp_xlsfont linkFont
+linkFont = book.addFont()
+linkFont.setColor(cxls.COLOR_BLUE)
+linkFont.setUnderline(cxls.UNDERLINE_SINGLE)
+
+n_tp_xlsformat linkFormat
+linkFormat = book.addFormat(alFormat)
+linkFormat.setFont(linkFont)
+
+n_tp_xlssheet sheet
+sheet = book.addSheet("Sheet1")
+
+
+sheet.setCol(0, 0, 27)
+sheet.setCol(1, 1, 10)
+
+sheet.writeNum(2, 1, 40, alFormat)
+sheet.writeNum(3, 1, 30, alFormat)
+sheet.writeNum(4, 1, 50, alFormat)
+
+sheet.writeStr(6, 0, "SUM(B3:B5) = ", arFormat)        
+sheet.writeFormula(6, 1, "SUM(B3:B5)", alFormat)        
+sheet.writeStr(7, 0, "AVERAGE(B3:B5) = ", arFormat)        
+sheet.writeFormula(7, 1, "AVERAGE(B3:B5)", alFormat)        
+sheet.writeStr(8, 0, "MAX(B3:B5) = ", arFormat)        
+sheet.writeFormula(8, 1, "MAX(B3:B5)", alFormat)        
+sheet.writeStr(9, 0, "MIX(B3:B5) = ", arFormat)        
+sheet.writeFormula(9, 1, "MIN(B3:B5)", alFormat)
+sheet.writeStr(10, 0, "COUNT(B3:B5) = ", arFormat)      
+sheet.writeFormula(10, 1, "COUNT(B3:B5)", alFormat)
+
+sheet.writeStr(12, 0, 'IF(B7 > 100;"large";"small") = ', arFormat)      
+sheet.writeFormula(12, 1, 'IF(B7 > 100;"large";"small")', alFormat)
+
+sheet.writeStr(14, 0, "SQRT(25) = ", arFormat)      
+sheet.writeFormula(14, 1, "SQRT(25)", alFormat)
+sheet.writeStr(15, 0, "RAND() = ", arFormat)      
+sheet.writeFormula(15, 1, "RAND()", alFormat)
+sheet.writeStr(16, 0, "2*PI() = ", arFormat)      
+sheet.writeFormula(16, 1, "2*PI()", alFormat)
+
+sheet.writeStr(18, 0, 'UPPER("libxl") = ', arFormat)      
+sheet.writeFormula(18, 1, 'UPPER("libxl")', alFormat)
+sheet.writeStr(19, 0, 'LEFT("window";3) = ', arFormat)      
+sheet.writeFormula(19, 1, 'LEFT("window";3)', alFormat)
+sheet.writeStr(20, 0, 'LEN("string") = ', arFormat)      
+sheet.writeFormula(20, 1, 'LEN("string")', alFormat)
+
+sheet.writeStr(22, 0, "DATE(2010;3;11) = ", arFormat)      
+sheet.writeFormula(22, 1, "DATE(2010;3;11)", alignDateFormat)
+sheet.writeStr(23, 0, "DAY(B23) = ", arFormat)      
+sheet.writeFormula(23, 1, "DAY(B23)", alFormat)
+sheet.writeStr(24, 0, "MONTH(B23) = ", arFormat)      
+sheet.writeFormula(24, 1, "MONTH(B23)", alFormat)
+sheet.writeStr(25, 0, "YEAR(B23) = ", arFormat)      
+sheet.writeFormula(25, 1, "YEAR(B23)", alFormat)
+sheet.writeStr(26, 0, "DAYS360(B23;TODAY()) = ", arFormat)      
+sheet.writeFormula(26, 1, "DAYS360(B23;TODAY())", alFormat)
+
+sheet.writeStr(28, 0, "B3+100*(2-COS(0)) = ", arFormat)      
+sheet.writeFormula(28, 1, "B3+100*(2-COS(0))", alFormat)
+sheet.writeStr(29, 0, "ISNUMBER(B29) = ", arFormat)      
+sheet.writeFormula(29, 1, "ISNUMBER(B29)", alFormat)
+sheet.writeStr(30, 0, "AND(1;0) = ", arFormat)      
+sheet.writeFormula(30, 1, "AND(1;0)", alFormat)
+
+sheet.writeStr(32, 0, "HYPERLINK() = ", arFormat)
+sheet.writeFormula(32, 1, 'HYPERLINK("http://www.libxl.com")', linkFormat)
+
+if book.save("formula.xlsx",false) then
+		messagebox('','complete')
+end if	
+destroy book
+```
 </details>
