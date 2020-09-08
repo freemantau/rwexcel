@@ -1,9 +1,8 @@
 # tplib_powerbuilder
 Direct reading and writing Excel files with Powerbuilder
-# Examples
-* writing data
+# Writing data
 <details>
->>> <summary> show code</summary>
+<summary>show code</summary>
 	
 ```cpp
 n_tp_excel book
@@ -177,6 +176,53 @@ destroy book
 
 Messagebox('','complete!')
 ```
-
 </details>
+# reading data
+<details>
+<summary>show code</summary>
+	
+```cpp
+n_tp_excel book
+book = Create n_tp_excel
+string sout
+sout = ''
+long row,col,rowlast,collast
+int celltype
+if book.load( "data.xlsx") Then 
+	n_tp_xlssheet sheet
+	sheet = book.getsheet( 2)
+	rowlast = sheet.lastrow( )
+	collast = sheet.lastcol( )
+	for row = 0 to rowlast - 1
+		for col = 0 to collast - 1
+			celltype = sheet.celltype(row,col)
+			sout += "(" + string(row) + "," + string(col) + ") = " 
+			if sheet.isformula( row,col /*long col */) Then
+				sout += sheet.readformula( row,col /*long col */) + "[formula]~n"
+			else
+				choose case celltype
+					case cxls.celltype_empty
+						sout += "[empty]~n"
+					case cxls.celltype_number
+						sout += string(sheet.readnum( row,col /*long col */)) + "[number]~n"
+					case cxls.celltype_datetime	/*use dateunpack*/
+						sout += string(sheet.readnum( row,col /*long col */)) + "[date]~n"
+					case cxls.celltype_string
+						sout += sheet.readstr( row,col /*long col */) + "[string]~n"
+					case cxls.celltype_boolean
+						sout += string(sheet.readbool( row,col /*long col */)) + "[boolean]~n"	
+					case cxls.celltype_blank
+						sout += "[blank]~n"
+					case cxls.celltype_error
+						sout += "[error]~n"
+				end choose
+			end if
+		next
+	next	
+end if
 
+messagebox('reading data',sout)
+destroy book
+
+···
+</details>
