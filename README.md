@@ -178,7 +178,7 @@ Messagebox('','complete!')
 ```
 </details>
 
-# reading data
+## reading data
 <details>
 <summary>show code</summary>
 	
@@ -227,7 +227,7 @@ destroy book
 ```
 </details>
 
-# Placing pictures
+## Placing pictures
 <details>
 <summary>show code</summary>
 	
@@ -255,7 +255,7 @@ destroy book
 ```
 </details>
 
-# Writing formulas
+## Writing formulas
 <details>
 <summary>show code</summary>
 	
@@ -352,7 +352,7 @@ destroy book
 ```
 </details>
 
-# Reading and writing date/time values
+## Reading and writing date/time values
 
 <details>
 <summary>show code</summary>
@@ -410,7 +410,7 @@ destroy book
 ```
 </details>
 
-# Access to sheet by name
+## Access to sheet by name
 <details>
 <summary>show code</summary>
 	
@@ -435,7 +435,7 @@ end if
 ```
 </details>
 
-# Merging cells
+## Merging cells
 <details>
 <summary>show code</summary>
 	
@@ -466,6 +466,333 @@ sheet.writeNum(7, 4, 2, format)
 if book.save( "merge.xlsx"/*string filename*/,false /*boolean usetempfile */) then
 	messagebox('','complete')
 end if
+destroy book
+```
+</details>
+
+## Inserting rows and columns
+<details>
+<summary>show code</summary>
+	
+```cpp
+n_tp_excel book
+book = create n_tp_excel
+book.createxls( cxls.type_xlsx)
+
+
+n_tp_xlssheet sheet
+sheet = book.addSheet("Sheet1")
+
+n_tp_xlsformat format
+format = book.addformat()
+
+long row,col
+for row = 1 to 30
+  for col = 0 to 10
+		sheet.writeNum(row, col,rand(10),format)
+	next
+next
+
+sheet.insertRow(5, 10,false)
+sheet.insertRow(20, 22,false)
+
+sheet.insertCol(4, 5,false)
+sheet.insertCol(8, 8,false)
+
+
+if book.save( "insert.xlsx"/*string filename*/,false /*boolean usetempfile */) then
+	messagebox('','complete')
+end if
+destroy book
+```
+</details>
+
+## Using number formats
+<details>
+<summary>show code</summary>
+	
+```cpp
+n_tp_excel book
+book = create n_tp_excel
+book.createxls( cxls.type_xlsx)
+
+n_tp_xlssheet sheet
+sheet = book.addSheet("my")
+
+sheet.setCol(0, 0, 38)
+sheet.setCol(1, 1, 10)    
+
+
+// built-in number formats
+n_tp_xlsformat format1,format2,format3,format4,format5,format6,format7,format8,format9,format10,format11,format12
+
+format1 = book.addFormat()
+format1.setNumFormat(cxls.NUMFORMAT_NUMBER_D2)
+
+sheet.writeStr(3, 0, "NUMFORMAT_NUMBER_D2")
+sheet.writeNum(3, 1, 2.5681, format1)
+
+format2 = book.addFormat()
+format2.setNumFormat(cxls.NUMFORMAT_NUMBER_SEP)
+
+sheet.writeStr(4, 0, "NUMFORMAT_NUMBER_SEP")
+sheet.writeNum(4, 1, 2500000, format2)
+
+format3 = book.addFormat()
+format3.setNumFormat(cxls.NUMFORMAT_CURRENCY_NEGBRA)
+
+sheet.writeStr(5, 0, "NUMFORMAT_CURRENCY_NEGBRA")
+sheet.writeNum(5, 1, -500, format3)
+
+format4 = book.addFormat()
+format4.setNumFormat(cxls.NUMFORMAT_PERCENT)
+
+sheet.writeStr(6, 0, "NUMFORMAT_PERCENT")
+sheet.writeNum(6, 1, -0.25, format4)
+
+format5 = book.addFormat()
+format5.setNumFormat(cxls.NUMFORMAT_SCIENTIFIC_D2)
+
+sheet.writeStr(7, 0, "NUMFORMAT_SCIENTIFIC_D2")
+sheet.writeNum(7, 1, 890, format5)
+
+format6 = book.addFormat()
+format6.setNumFormat(cxls.NUMFORMAT_FRACTION_ONEDIG)
+
+sheet.writeStr(8, 0, "NUMFORMAT_FRACTION_ONEDIG")
+sheet.writeNum(8, 1, 0.75, format6)
+
+format7 = book.addFormat()
+format7.setNumFormat(cxls.NUMFORMAT_DATE)
+
+sheet.writeStr(9, 0, "NUMFORMAT_DATE")
+sheet.writeNum(9, 1, book.datePack(2020, 5, 16,0,0,0,0), format7)
+
+format8 = book.addFormat()
+format8.setNumFormat(cxls.NUMFORMAT_CUSTOM_MON_YY)
+
+sheet.writeStr(10, 0, "NUMFORMAT_CUSTOM_MON_YY")
+sheet.writeNum(10, 1, book.datePack(2020, 5, 16,0,0,0,0), format8)
+
+// custom number formats
+
+format9 = book.addFormat()
+format9.setNumFormat(book.addCustomNumFormat("#.###"))    
+
+sheet.writeStr(12, 0, "#.###")
+sheet.writeNum(12, 1, 20.5627, format9)
+
+format10 = book.addFormat()
+format10.setNumFormat(book.addCustomNumFormat("#.00"))    
+
+sheet.writeStr(13, 0, "#.00")
+sheet.writeNum(13, 1, 4.8, format10)
+
+format11 = book.addFormat()
+format11.setNumFormat(book.addCustomNumFormat('0.00 "dollars"'))    
+
+sheet.writeStr(14, 0, '0.00 "dollars"')
+sheet.writeNum(14, 1, 1.23, format11)
+
+format12 = book.addFormat()
+format12.setNumFormat(book.addCustomNumFormat("[Red][<=100];[Green][>100]"))    
+
+sheet.writeStr(15, 0, "[Red][<=100];[Green][>100]")
+sheet.writeNum(15, 1, 60, format12)
+
+
+
+if book.save( "numformats.xlsx"/*string filename*/,false /*boolean usetempfile */) then
+	messagebox('','complete')
+end if
+destroy book
+```
+</details>
+
+## Aligning, colors and borders
+<details>
+<summary>show code</summary>
+	
+```cpp
+n_tp_excel book
+book = create n_tp_excel
+
+book.createxls( cxls.type_xlsx)
+
+n_tp_xlssheet sheet
+sheet = book.addSheet("my")
+
+sheet.setDisplayGridlines(false)
+
+sheet.setCol(1, 1, 30)
+sheet.setCol(3, 3, 11.4)
+sheet.setCol(4, 4, 2)
+sheet.setCol(5, 5, 15)
+sheet.setCol(6, 6, 2)
+sheet.setCol(7, 7, 15.4)
+
+string nameAlignH[] = {"ALIGNH_LEFT", "ALIGNH_CENTER", "ALIGNH_RIGHT"}
+int alignH[] = {cxls.ALIGNH_LEFT, cxls.ALIGNH_CENTER, cxls.ALIGNH_RIGHT}
+
+int i
+
+for i = 1 to upperbound(alignH)
+	n_tp_xlsformat format
+	format = book.addFormat()
+	format.setAlignH(alignH[i])
+	format.setBorder(cxls.borderstyle_thin)
+	sheet.writeStr(i * 2 + 2, 1, nameAlignH[i], format)
+next  
+
+string nameAlignV[] = {"ALIGNV_TOP", "ALIGNV_CENTER", "ALIGNV_BOTTOM"}
+long alignV[] = {cxls.ALIGNV_TOP, cxls.ALIGNV_CENTER, cxls.ALIGNV_BOTTOM}
+
+for i = 1 to upperbound(alignV)
+	format = book.addFormat()
+	format.setAlignV(alignV[i])
+	format.setBorder(cxls.borderstyle_thin)
+	sheet.writeStr(4, i * 2 + 1, nameAlignV[i], format)
+	sheet.setMerge(4, 8, i * 2 + 1, i * 2 + 1)
+next
+
+string nameBorderStyle[] = {"BORDERSTYLE_MEDIUM", "BORDERSTYLE_DASHED", &
+										 "BORDERSTYLE_DOTTED", "BORDERSTYLE_THICK",& 
+										 "BORDERSTYLE_DOUBLE", "BORDERSTYLE_DASHDOT"}
+long borderStyle[] = {cxls.BORDERSTYLE_MEDIUM, cxls.BORDERSTYLE_DASHED,cxls.BORDERSTYLE_DOTTED, &
+								cxls.BORDERSTYLE_THICK, cxls.BORDERSTYLE_DOUBLE, cxls.BORDERSTYLE_DASHDOT}
+
+for i = 1 to upperbound(nameBorderStyle)       
+	format = book.addFormat()
+	format.setBorder(borderStyle[i])
+	sheet.writeStr(i * 2 + 12, 1, nameBorderStyle[i], format)
+next 
+
+string nameColors[] = {"COLOR_RED", "COLOR_BLUE", "COLOR_YELLOW", &
+								  "COLOR_PINK", "COLOR_GREEN", "COLOR_GRAY25"}
+long colors[] = {cxls.COLOR_RED, cxls.COLOR_BLUE, cxls.COLOR_YELLOW, cxls.COLOR_PINK, cxls.COLOR_GREEN, &
+				 cxls.COLOR_GRAY25}
+long fillPatterns[] = {cxls.FILLPATTERN_GRAY50, cxls.FILLPATTERN_HORSTRIPE, &
+								 cxls.FILLPATTERN_VERSTRIPE, cxls.FILLPATTERN_REVDIAGSTRIPE,&
+								 cxls.FILLPATTERN_THINVERSTRIPE, cxls.FILLPATTERN_THINHORCROSSHATCH}
+
+
+for i = 1 to upperbound(nameColors)
+	n_tp_xlsformat format1
+	format1 = book.addFormat()
+	format1.setFillPattern(cxls.FILLPATTERN_SOLID)
+	format1.setPatternForegroundColor(colors[i])
+	sheet.writeBlank(i * 2 + 12, 3, format1)
+	
+	n_tp_xlsformat format2
+	format2 = book.addFormat()
+	format2.setFillPattern(fillPatterns[i])
+	format2.setPatternForegroundColor(colors[i])
+	sheet.writeBlank(i * 2 + 12, 5, format2)
+	
+	n_tp_xlsfont font
+	font = book.addFont()
+	font.setColor(colors[i])
+	
+	n_tp_xlsformat format3
+	format3 = book.addFormat()
+	format3.setBorder(cxls.borderstyle_thin)
+	format3.setBorderColor(colors[i])        
+	format3.setFont(font)
+	sheet.writeStr(i * 2 + 12, 7, nameColors[i], format3)
+next
+
+
+if book.save("acb.xlsx",false) then
+	messagebox('','complete')
+end if
+
+destroy book
+```
+</details>
+
+## Customizing fonts
+<details>
+<summary>show code</summary>
+	
+```cpp
+n_tp_excel book
+book = create n_tp_excel
+book.createxls( cxls.type_xlsx)
+
+n_tp_xlssheet sheet
+sheet = book.addSheet("Sheet1")
+
+string fonts[] = {"Aria", "Arial Black", "Comic Sans MS", "Courier New",&
+							"Impact", "Times New Roman", "Verdana"}
+
+int i
+for i = 1 to upperbound(fonts)
+	n_tp_xlsfont font
+	font = book.addFont()
+	font.setSize(16)
+	font.setName(fonts[i])
+	n_tp_xlsformat format
+	format = book.addFormat()
+	format.setFont(font)
+	sheet.writeStr(i + 1, 3, fonts[i], format)
+next
+
+int fontSize[] = {8, 10, 12, 14, 16, 20, 25}
+
+for i = 1 to upperbound(fontSize) 
+	font = book.addFont()
+	font.setSize(fontSize[i])        
+	format = book.addFormat()
+	format.setFont(font)
+	sheet.writeStr(i + 1, 7, "Text", format)
+next  
+
+font = book.addFont()
+font.setSize(16)
+format = book.addFormat()        
+format.setRotation(255)
+format.setFont(font)
+sheet.writeStr(2, 9, "Vertica", format)
+sheet.setMerge(2, 8, 9, 9)
+
+n_tp_xlsfont boldFont
+boldFont = book.addFont()
+boldFont.setBold(true)
+n_tp_xlsformat boldFormat
+boldFormat = book.addFormat()
+boldFormat.setFont(boldFont)
+
+n_tp_xlsfont italicFont
+italicFont = book.addFont()
+italicFont.setItalic(true) 
+n_tp_xlsformat italicFormat
+italicFormat = book.addFormat()
+italicFormat.setFont(italicFont)
+
+n_tp_xlsfont underlineFont
+underlineFont = book.addFont()
+underlineFont.setUnderline(cxls.UNDERLINE_SINGLE)
+n_tp_xlsformat underlineFormat
+underlineFormat = book.addFormat()
+underlineFormat.setFont(underlineFont)
+
+n_tp_xlsfont strikeoutFont
+strikeoutFont = book.addFont()
+strikeoutFont.setStrikeOut(true)
+n_tp_xlsformat strikeoutFormat
+strikeoutFormat = book.addFormat()
+strikeoutFormat.setFont(strikeoutFont)
+
+sheet.writeStr(2, 1, "Norma")
+sheet.writeStr(3, 1, "Bold", boldFormat)      
+sheet.writeStr(4, 1, "Italic", italicFormat)      
+sheet.writeStr(5, 1, "Underline", underlineFormat)      
+sheet.writeStr(6, 1, "Strikeout", strikeoutFormat)    
+
+if book.save("fonts.xlsx",false) Then
+	messagebox('','complete')
+end if
+
 destroy book
 ```
 </details>
