@@ -351,3 +351,121 @@ end if
 destroy book
 ```
 </details>
+
+# Reading and writing date/time values
+
+<details>
+<summary>show code</summary>
+	
+```cpp
+n_tp_excel book
+book = create n_tp_excel
+book.createxls( cxls.type_xlsx)
+
+n_tp_xlsformat format1,format2,format3,format4
+format1 = book.addFormat()
+format1.setNumFormat(cxls.NUMFORMAT_DATE)
+
+format2 = book.addFormat()
+format2.setNumFormat(cxls.NUMFORMAT_CUSTOM_MDYYYY_HMM)
+
+format3 = book.addFormat()
+format3.setNumFormat(book.addCustomNumFormat("d mmmm yyyy"))
+
+format4 = book.addFormat()
+format4.setNumFormat(cxls.NUMFORMAT_CUSTOM_HMM_AM)
+
+n_tp_xlssheet sheet
+sheet = book.addSheet("Sheet1")
+
+
+sheet.setCol(1, 1, 15)
+
+// writing
+
+sheet.writeNum(2, 1, book.datePack(2010, 3, 11,0,0,0,0), format1)       
+sheet.writeNum(3, 1, book.datePack(2010, 3, 11, 10, 25, 55,0), format2)
+sheet.writeNum(4, 1, book.datePack(2010, 3, 11,0,0,0,0), format3)       
+sheet.writeNum(5, 1, book.datePack(2010, 3, 11, 10, 25, 55,0), format4)
+
+// reading
+
+long year, month, day , hour, min, sec,msec
+
+book.dateUnpack(sheet.readNum(3, 1), ref year, ref month, ref day, ref hour, ref min, ref sec , ref msec)
+
+messagebox('datetime',			"year:" 		+ string(year) + "~n" + &
+										"month:" 	+ string(month) +  "~n" + &
+										"day:" 		+ string(day) +  "~n" + &
+										"hour:"		+ string(hour) +  "~n" + &
+										"min:"	 	+ string(min) +  "~n" + &
+										"second:" 	+ string(sec) +  "~n" + &
+										"msec:"	 	+ string(msec) )	
+
+
+if book.save("datetime.xlsx",false) then
+	Messagebox('','complete')
+end if
+destroy book
+```
+</details>
+
+# Access to sheet by name
+<details>
+<summary>show code</summary>
+	
+```cpp
+n_tp_excel book
+book = Create n_tp_excel
+
+long sheetcount,sheetindex
+string sheetname
+if book.load( "data.xlsx") Then
+	sheetcount = book.getsheetcount( )
+	for sheetindex = 0 to sheetcount  - 1	
+		sheetname = book.getsheetname( sheetindex)
+		if sheetname = "mysheetname" Then
+			/*get your sheetbyname*/
+			/*
+				sheet  = book.getsheet( sheetindex)
+			*/
+		end if
+	next
+end if
+```
+</details>
+
+# Merging cells
+<details>
+<summary>show code</summary>
+	
+```cpp
+n_tp_excel book
+book = create n_tp_excel
+book.createxls( cxls.type_xlsx)
+
+n_tp_xlsformat format
+format = book.addFormat();
+format.setAlignH(cxls.ALIGNH_CENTER);
+format.setAlignV(cxls.ALIGNV_CENTER);
+
+n_tp_xlssheet sheet
+sheet = book.addSheet("Sheet1")
+
+sheet.writeStr(3, 1, "Hello World !", format)
+
+sheet.setMerge(3, 5, 1, 5)
+
+sheet.setMerge(7, 20, 1, 2)
+sheet.setMerge(7, 20, 4, 5)
+
+sheet.writeNum(7, 1, 1, format)
+sheet.writeNum(7, 4, 2, format)
+
+
+if book.save( "merge.xlsx"/*string filename*/,false /*boolean usetempfile */) then
+	messagebox('','complete')
+end if
+destroy book
+```
+</details>
