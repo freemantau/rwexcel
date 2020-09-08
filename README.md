@@ -3,7 +3,7 @@ Direct reading and writing Excel files with Powerbuilder
 # Examples
 * writing data
 <details>
-	<summary>show code</summary>
+<summary>show code</summary>
 ```cpp
 n_tp_excel book
 book = Create n_tp_excel
@@ -176,5 +176,6 @@ destroy book
 
 Messagebox('','complete!')
 ```
+---
 </details>
 
