@@ -1,7 +1,7 @@
 # tplib_powerbuilder
 Direct reading and writing Excel files with Powerbuilder
 # Examples
-* writing data
+		writing data
 <details>
 <summary>show code</summary>
 	
