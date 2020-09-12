@@ -81,7 +81,7 @@ dollarformat.setnumformat( book.addcustomnumformat( "_($* # ##0.00_);_($* (# ##0
 n_tp_xlssheet sheet
 sheet = book.addsheet( "Sales Receipt表")
 
-//TODO
+
 sheet.setdisplaygridlines(false)
 
 sheet.setCol(1, 1, 36)
@@ -97,12 +97,12 @@ sheet.setPicture(2, 1, logoId,1.0,0,0)
 sheet.writeStr(4, 0, "Apricot Ltd.", companyFormat)
 sheet.writeStr(4, 3, "Date:", textFormat)
 
-//TODO
+
 sheet.writeFormula(4, 4, "TODAY()", dateFormat)
 
 sheet.writeStr(5, 3, "Receipt #:", textFormat)
 
-//TODO
+
 sheet.writeNum(5, 4, 652, textFormat)
 
 sheet.writeStr(8, 0, "Sold to:", textFormat)
@@ -111,7 +111,7 @@ sheet.writeStr(9, 1, "Pineapple Ltd.", textFormat)
 sheet.writeStr(10, 1, "123 Dreamland Street", textFormat)
 sheet.writeStr(11, 1, "Moema, 52674", textFormat)
 
-//TODO
+
 sheet.writeNum(12, 1, 2659872055, phoneFormat)
 
 sheet.writeStr(14, 0, "Item #", textFormat)
@@ -170,8 +170,7 @@ sheet.writeNum(17, 2, 180, borderFormat)
 sheet.writeNum(17, 3, 2.8, dollarFormat)
 
 book.save("receipt.xls",false)
-//book->release();
-book.close( )
+
 destroy book
 
 Messagebox('','complete!')
