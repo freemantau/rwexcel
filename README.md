@@ -1,6 +1,6 @@
 # tplib_powerbuilder
 Direct reading and writing Excel files with Powerbuilder
-###![Image](https://github.com/freemantau/tplib_powerbuilder/edit/master/demo.png?raw=true)
+###![Image](https://github.com/freemantau/tplib_powerbuilder/blob/master/demo.png?raw=true)
 ## Writing data
 <details>
 <summary>show code</summary>
@@ -173,6 +173,9 @@ sheet.writeNum(17, 3, 2.8, dollarFormat)
 book.save("receipt.xls",false)
 
 destroy book
+
+
+
 
 Messagebox('','complete!')
 ```
