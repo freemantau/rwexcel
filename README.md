@@ -1,4 +1,4 @@
-# Direct reading and writing Excel files with Powerbuilder
+# Example
 
 ![Image](https://github.com/freemantau/tplib_powerbuilder/blob/master/demo.png?raw=true)
 ## Writing data
@@ -6,8 +6,8 @@
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = Create n_tp_excel
+n_tp_xlsbook book
+book = Create n_tp_xlsbook
 
 book.createxls( cxls.TYPE_XLS)
 //
@@ -186,8 +186,8 @@ Messagebox('','complete!')
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = Create n_tp_excel
+n_tp_xlsbook book
+book = Create n_tp_xlsbook
 string sout
 sout = ''
 long row,col,rowlast,collast
@@ -236,8 +236,8 @@ destroy book
 	
 ```cpp
 boolean lb
-n_tp_excel book
-book = Create n_tp_excel
+n_tp_xlsbook book
+book = Create n_tp_xlsbook
 lb = book.createxls( cxls.TYPE_XLSX)
 long id
 if lb Then
@@ -263,8 +263,8 @@ destroy book
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = create n_tp_excel
+n_tp_xlsbook book
+book = create n_tp_xlsbook
 book.createxls( cxls.type_xlsx)
 
 n_tp_xlsformat alFormat
@@ -361,8 +361,8 @@ destroy book
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = create n_tp_excel
+n_tp_xlsbook book
+book = create n_tp_xlsbook
 book.createxls( cxls.type_xlsx)
 
 n_tp_xlsformat format1,format2,format3,format4
@@ -418,8 +418,8 @@ destroy book
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = Create n_tp_excel
+n_tp_xlsbook book
+book = Create n_tp_xlsbook
 
 long sheetcount,sheetindex
 string sheetname
@@ -443,8 +443,8 @@ end if
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = create n_tp_excel
+n_tp_xlsbook book
+book = create n_tp_xlsbook
 book.createxls( cxls.type_xlsx)
 
 n_tp_xlsformat format
@@ -478,8 +478,8 @@ destroy book
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = create n_tp_excel
+n_tp_xlsbook book
+book = create n_tp_xlsbook
 book.createxls( cxls.type_xlsx)
 
 
@@ -515,8 +515,8 @@ destroy book
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = create n_tp_excel
+n_tp_xlsbook book
+book = create n_tp_xlsbook
 book.createxls( cxls.type_xlsx)
 
 n_tp_xlssheet sheet
@@ -617,8 +617,8 @@ destroy book
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = create n_tp_excel
+n_tp_xlsbook book
+book = create n_tp_xlsbook
 
 book.createxls( cxls.type_xlsx)
 
@@ -718,8 +718,8 @@ destroy book
 <summary>show code</summary>
 	
 ```cpp
-n_tp_excel book
-book = create n_tp_excel
+n_tp_xlsbook book
+book = create n_tp_xlsbook
 book.createxls( cxls.type_xlsx)
 
 n_tp_xlssheet sheet
