@@ -1,10 +1,12 @@
+[English](https://github.com/freemantau/tplib_powerbuilder/tree/master/zh-CN#readme)
+
 # 例子
 
 ![Image](https://github.com/freemantau/tplib_powerbuilder/blob/master/demo.png?raw=true)
 
 ## 写入数据
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
@@ -186,7 +188,7 @@ Messagebox('','complete!')
 
 ## 读取数据
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
@@ -237,7 +239,7 @@ destroy book
 
 ## 放置图片
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 boolean lb
@@ -267,7 +269,7 @@ destroy book
 
 ## 写公式
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
@@ -366,7 +368,7 @@ destroy book
 
 ## 读取和写入日期/时间值
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
@@ -425,7 +427,7 @@ destroy book
 
 ## 按名称访问工作表
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
@@ -452,7 +454,7 @@ end if
 
 ## 合并单元格
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
@@ -489,7 +491,7 @@ destroy book
 
 ## 插入行和列
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
@@ -528,7 +530,7 @@ destroy book
 
 ## 使用数字格式
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
@@ -632,7 +634,7 @@ destroy book
 
 ## 对齐、颜色和边框
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
@@ -735,7 +737,7 @@ destroy book
 
 ## 自定义字体
 
-<summary>显示代码</summary>
+<details> <summary>显示代码</summary> </details>
 
 ```cpp
 n_tp_xlsbook book
