@@ -1,3 +1,5 @@
+[简体中文](https://github.com/freemantau/tplib_powerbuilder/tree/master/zh-CN#readme)
+
 # Example
 
 ![Image](https://github.com/freemantau/tplib_powerbuilder/blob/master/demo.png?raw=true)
