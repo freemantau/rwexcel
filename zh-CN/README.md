@@ -1,4 +1,4 @@
-[English](https://github.com/freemantau/tplib_powerbuilder/tree/master/zh-CN#readme)
+[English](https://github.com/freemantau/tplib_powerbuilder/tree/master/#readme)
 
 # 例子
 
